@@ -15,7 +15,7 @@ const ExperienceCard: React.FC<{ experience: ExperienceType }> = ({ experience }
         <h3 className="font-medium leading-snug text-gray-800 dark:text-gray-100">
           <div>
             <a
-              className="inline-flex items-baseline font-medium leading-tight text-gray-900 dark:text-gray-100 hover:text-yellow-400 focus-visible:text-yellow-400 group/link text-base"
+              className="inline-flex items-baseline font-medium leading-tight text-gray-900 dark:text-gray-100 hover:text-brand focus-visible:text-brand group/link text-base"
               href={experience.link}
               target="_blank"
               rel="noreferrer noopener"

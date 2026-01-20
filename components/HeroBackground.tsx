@@ -36,13 +36,13 @@ const HeroBackground: React.FC = () => {
         background: '#f9fafb', // gray-50
         particle: 'rgba(75, 85, 99, 0.8)', // gray-500
         line: 'rgba(156, 163, 175, 0.4)', // gray-400
-        highlight: 'rgba(250, 204, 21, 0.8)', // yellow-400
+        highlight: 'rgba(2, 63, 151, 0.8)', // brand blue
       },
       dark: {
         background: '#000000', // black
         particle: 'rgba(107, 114, 128, 0.8)', // gray-500
         line: 'rgba(55, 65, 81, 0.6)', // gray-700
-        highlight: 'rgba(250, 204, 21, 0.8)', // yellow-400
+        highlight: 'rgba(2, 63, 151, 0.8)', // brand blue
       }
     };
     let currentColors = colors[theme];

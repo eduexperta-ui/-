@@ -18,7 +18,7 @@ const NAV_LINKS = [
 const ThemeToggle: React.FC<Pick<HeaderProps, 'theme' | 'toggleTheme'>> = ({ theme, toggleTheme }) => (
   <button
     onClick={toggleTheme}
-    className="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-yellow-400 dark:hover:text-yellow-400 transition-colors"
+    className="w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:text-brand dark:hover:text-brand transition-colors"
     aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
   >
     {theme === 'dark' ? (
@@ -55,16 +55,16 @@ const Header: React.FC<HeaderProps> = ({ theme, toggleTheme }) => {
           <div className="hidden md:flex items-center">
             <nav className="flex items-center gap-x-8">
               {NAV_LINKS.map(link => (
-                <a key={link.name} href={link.href} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-yellow-500 dark:hover:text-yellow-400 transition-colors">
+                <a key={link.name} href={link.href} className="text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-brand dark:hover:text-brand transition-colors">
                   {link.name}
                 </a>
               ))}
             </nav>
             <div className="flex items-center gap-x-2 ml-16">
-              <button onClick={() => setPopupType('phone')} className="p-2 rounded-full text-gray-500 hover:text-yellow-400 dark:hover:text-yellow-400 transition-colors" aria-label="Open phone contact">
+              <button onClick={() => setPopupType('phone')} className="p-2 rounded-full text-gray-500 hover:text-brand dark:hover:text-brand transition-colors" aria-label="Open phone contact">
                 {Icons.phone}
               </button>
-              <button onClick={() => setPopupType('email')} className="p-2 rounded-full text-gray-500 hover:text-yellow-400 dark:hover:text-yellow-400 transition-colors" aria-label="Open email contact">
+              <button onClick={() => setPopupType('email')} className="p-2 rounded-full text-gray-500 hover:text-brand dark:hover:text-brand transition-colors" aria-label="Open email contact">
                 {Icons.email}
               </button>
               <ThemeToggle theme={theme} toggleTheme={toggleTheme} />

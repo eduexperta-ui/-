@@ -71,12 +71,12 @@ const Cursor: React.FC = () => {
       <div
         ref={dotRef}
         style={{ left: 0, top: 0 }}
-        className="fixed w-2 h-2 bg-yellow-400 rounded-full pointer-events-none z-[9999]"
+        className="fixed w-2 h-2 bg-brand rounded-full pointer-events-none z-[9999]"
       />
       <div
         ref={outlineRef}
         style={{ left: 0, top: 0 }}
-        className="fixed w-6 h-6 border-2 border-yellow-400 rounded-full pointer-events-none z-[9999]"
+        className="fixed w-6 h-6 border-2 border-brand rounded-full pointer-events-none z-[9999]"
       />
     </>
   );

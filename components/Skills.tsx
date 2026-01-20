@@ -16,7 +16,7 @@ const Skills: React.FC = () => {
       <div className="mx-auto">
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 lg:grid-cols-6 gap-8">
           {SKILLS_DATA.map((skill) => (
-            <div key={skill.name} className="flex flex-col items-center justify-center space-y-3 p-4 bg-gray-100 dark:bg-neutral-900/50 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-yellow-400/20 dark:hover:shadow-yellow-400/20">
+            <div key={skill.name} className="flex flex-col items-center justify-center space-y-3 p-4 bg-gray-100 dark:bg-neutral-900/50 rounded-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-brand/20 dark:hover:shadow-brand/20">
               {skill.icon}
               <span className="text-sm font-medium text-center text-gray-700 dark:text-gray-300">{skill.name}</span>
             </div>

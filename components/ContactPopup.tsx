@@ -64,7 +64,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({ type, onClose }) => {
           <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" /></svg>
         </button>
         
-        <div className="mx-auto mb-4 w-16 h-16 flex items-center justify-center text-yellow-400">
+        <div className="mx-auto mb-4 w-16 h-16 flex items-center justify-center text-brand">
             {React.cloneElement(info.icon, { className: 'w-10 h-10' })}
         </div>
 
@@ -90,7 +90,7 @@ const ContactPopup: React.FC<ContactPopupProps> = ({ type, onClose }) => {
             </button>
             <a
                 href={info.actionHref}
-                className="w-full bg-yellow-400 text-black font-bold py-3 px-4 rounded-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105"
+                className="w-full bg-brand text-white font-bold py-3 px-4 rounded-lg hover:bg-brand/90 transition-all duration-300 transform hover:scale-105"
             >
                 {info.actionText}
             </a>

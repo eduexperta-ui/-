@@ -17,7 +17,7 @@ const Contact: React.FC = () => {
       </p>
       <a
         href={`mailto:${PERSONAL_INFO.email}`}
-        className="inline-block bg-yellow-400 text-black dark:text-black font-bold py-4 px-8 rounded-lg hover:bg-yellow-300 transition-all duration-300 transform hover:scale-105"
+        className="inline-block bg-brand text-white font-bold py-4 px-8 rounded-lg hover:bg-brand/90 transition-all duration-300 transform hover:scale-105 shadow-lg shadow-brand/20"
       >
         메일 보내기
       </a>

@@ -32,7 +32,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         
         <div className="flex flex-wrap gap-2 mb-4">
           {tags.map((tag) => (
-            <span key={tag} className="bg-yellow-400/10 text-yellow-600 dark:text-yellow-300 text-xs font-semibold px-2.5 py-1 rounded-full">
+            <span key={tag} className="bg-brand/10 text-brand dark:text-blue-400 text-xs font-semibold px-2.5 py-1 rounded-full border border-brand/20">
               {tag}
             </span>
           ))}
@@ -42,7 +42,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           <div>
             <button 
               onClick={() => setIsExpanded(!isExpanded)} 
-              className="inline-flex items-center space-x-2 text-sm font-semibold text-yellow-500 dark:text-yellow-300 hover:underline"
+              className="inline-flex items-center space-x-2 text-sm font-semibold text-brand hover:underline"
               aria-expanded={isExpanded}
             >
               <span>{isExpanded ? '간략히 보기' : '자세히 보기'}</span>
