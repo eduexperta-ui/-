@@ -1,10 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionTitle from './SectionTitle';
 import { useFadeIn } from '../hooks/useFadeIn';
-import { PERSONAL_INFO } from '../constants';
+import { PERSONAL_INFO, profilePlaceholderImg } from '../constants';
 
 const About: React.FC = () => {
   const [ref, isVisible] = useFadeIn({ threshold: 0.2 });
+  const [imgSrc, setImgSrc] = useState(PERSONAL_INFO.profileImage);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // 이미지 로딩 실패 시 호출되는 함수
+  const handleImageError = () => {
+    setIsLoading(false);
+    if (imgSrc !== profilePlaceholderImg) {
+      setImgSrc(profilePlaceholderImg);
+    }
+  };
+
+  // 이미지 로딩 완료 시 호출
+  const handleImageLoad = () => {
+    setIsLoading(false);
+  };
 
   return (
     <section 
@@ -22,10 +37,24 @@ const About: React.FC = () => {
             <div className="absolute -inset-1 bg-brand rounded-2xl opacity-20 group-hover:opacity-40 transition-opacity duration-300"></div>
             
             <div className="relative w-64 h-64 md:w-full md:h-auto aspect-square overflow-hidden rounded-2xl border-2 border-brand/20 bg-neutral-200 dark:bg-neutral-800 shadow-xl">
+              {/* Skeleton UI when loading */}
+              {isLoading && (
+                <div className="absolute inset-0 bg-neutral-300 dark:bg-neutral-700 animate-pulse flex items-center justify-center">
+                  <div className="w-8 h-8 border-4 border-brand border-t-transparent rounded-full animate-spin"></div>
+                </div>
+              )}
+              
               <img 
-                src={PERSONAL_INFO.profileImage} 
+                src={imgSrc} 
                 alt="김태진 프로필 사진" 
-                className="w-full h-full object-cover grayscale-[20%] hover:grayscale-0 transition-all duration-500 transform hover:scale-105"
+                onLoad={handleImageLoad}
+                onError={handleImageError}
+                /* 
+                  scale-[1.2]: 얼굴이 잘리지 않도록 확대 비율을 1.4에서 1.2로 하향 조정
+                  origin-top: 확대 시 머리 부분이 잘리는 것을 방지하기 위해 기준점을 상단으로 설정
+                  object-[center_15%]: 얼굴 위치에 맞춰 초점을 더 위로 정밀 조정
+                */
+                className={`w-full h-full object-cover object-[center_15%] transition-all duration-700 transform scale-[1.2] origin-top hover:scale-[1.25] ${isLoading ? 'opacity-0' : 'opacity-100'}`}
               />
             </div>
           </div>
