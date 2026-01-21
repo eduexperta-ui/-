@@ -24,5 +24,5 @@ export interface Experience {
   title: string;
   start: string;
   end: string;
-  description: string;
+  description: string | string[];
 }

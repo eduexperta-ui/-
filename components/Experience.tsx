@@ -5,28 +5,48 @@ import { useFadeIn } from '../hooks/useFadeIn';
 import type { Experience as ExperienceType } from '../types';
 
 const ExperienceCard: React.FC<{ experience: ExperienceType }> = ({ experience }) => {
+  const isDescriptionArray = Array.isArray(experience.description);
+
   return (
     <div className="group relative grid pb-1 transition-all sm:grid-cols-8 sm:gap-8 md:gap-4 lg:hover:!opacity-100 lg:group-hover/list:opacity-50">
-      <div className="absolute -inset-x-4 -inset-y-2.5 z-0 hidden rounded-md transition motion-reduce:transition-none lg:block lg:group-hover:bg-gray-200/50 dark:lg:group-hover:bg-neutral-800/50"></div>
-      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-wide text-gray-500 sm:col-span-2">
+      <div className="absolute -inset-x-4 -inset-y-3 z-0 hidden rounded-xl transition motion-reduce:transition-none lg:block lg:group-hover:bg-gray-200/50 dark:lg:group-hover:bg-neutral-900/40"></div>
+      
+      <header className="z-10 mb-2 mt-1 text-xs font-semibold uppercase tracking-widest text-gray-400 dark:text-gray-500 sm:col-span-2">
         {experience.start} — {experience.end}
       </header>
+      
       <div className="z-10 sm:col-span-6">
-        <h3 className="font-medium leading-snug text-gray-800 dark:text-gray-100">
+        <h3 className="font-semibold leading-snug text-gray-900 dark:text-gray-100">
           <div>
             <a
-              className="inline-flex items-baseline font-medium leading-tight text-gray-900 dark:text-gray-100 hover:text-brand focus-visible:text-brand group/link text-base"
+              className="inline-flex items-baseline font-semibold leading-tight text-gray-900 dark:text-gray-100 hover:text-brand focus-visible:text-brand group/link text-base md:text-lg"
               href={experience.link}
               target="_blank"
               rel="noreferrer noopener"
               aria-label={`${experience.title} at ${experience.company}`}
             >
               <span className="absolute -inset-x-4 -inset-y-2.5 hidden rounded md:block"></span>
-              <span>{experience.title} · <span className="inline-block">{experience.company}</span></span>
+              <span className="break-keep">
+                {experience.title} <span className="text-brand dark:text-brand/80 mx-1">·</span> <span className="inline-block">{experience.company}</span>
+              </span>
             </a>
           </div>
         </h3>
-        <p className="mt-2 text-sm leading-normal text-gray-600 dark:text-gray-400">{experience.description}</p>
+        
+        {isDescriptionArray ? (
+          <ul className="mt-4 space-y-2.5">
+            {(experience.description as string[]).map((item, idx) => (
+              <li key={idx} className="text-sm leading-relaxed text-gray-600 dark:text-gray-400 flex items-start group/item">
+                <span className="mt-[7px] mr-3 w-[5px] h-[5px] rounded-full bg-brand dark:bg-brand/70 flex-shrink-0 transition-transform group-hover/item:scale-125"></span>
+                <span className="flex-1 break-keep">{item}</span>
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <p className="mt-3 text-sm leading-relaxed text-gray-600 dark:text-gray-400 break-keep">
+            {experience.description}
+          </p>
+        )}
       </div>
     </div>
   );
@@ -40,10 +60,10 @@ const Experience: React.FC = () => {
     <section 
       id="experience"
       ref={ref}
-      className={`py-24 transition-all duration-700 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
+      className={`py-16 md:py-24 transition-all duration-700 ease-in-out ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}
     >
-      <SectionTitle className="mb-12">Experience</SectionTitle>
-      <div className="group/list space-y-8">
+      <SectionTitle className="mb-12 md:mb-16">Work Experience</SectionTitle>
+      <div className="group/list space-y-10 md:space-y-12">
         {WORK_EXPERIENCE_DATA.map((exp, index) => (
           <ExperienceCard key={index} experience={exp} />
         ))}

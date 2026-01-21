@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const Cursor: React.FC = () => {
   const [isHoveringLink, setIsHoveringLink] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
   
   const dotRef = useRef<HTMLDivElement>(null);
   const outlineRef = useRef<HTMLDivElement>(null);
@@ -17,6 +18,14 @@ const Cursor: React.FC = () => {
   isHoveringLinkRef.current = isHoveringLink;
 
   useEffect(() => {
+    // Check if it's a touch device
+    const checkTouch = () => {
+      setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    };
+    checkTouch();
+
+    if (isTouchDevice) return;
+
     const handleMouseMove = (e: MouseEvent) => {
       mousePos.current = { x: e.clientX, y: e.clientY };
 
@@ -30,12 +39,10 @@ const Cursor: React.FC = () => {
     window.addEventListener('mousemove', handleMouseMove);
 
     const animate = () => {
-      // Position interpolation for outline
-      const posSpeed = 0.4; // Slightly increased for better responsiveness
+      const posSpeed = 0.4;
       outlinePos.current.x += (mousePos.current.x - outlinePos.current.x) * posSpeed;
       outlinePos.current.y += (mousePos.current.y - outlinePos.current.y) * posSpeed;
 
-      // Scale interpolation for smooth hover effect
       const scaleSpeed = 0.2;
       const targetDotScale = isHoveringLinkRef.current ? 3 : 1;
       const targetOutlineScale = isHoveringLinkRef.current ? 0 : 1;
@@ -43,12 +50,9 @@ const Cursor: React.FC = () => {
       dotScale.current += (targetDotScale - dotScale.current) * scaleSpeed;
       outlineScale.current += (targetOutlineScale - outlineScale.current) * scaleSpeed;
 
-      // Apply transforms
-      // Dot position is instant
       if (dotRef.current) {
         dotRef.current.style.transform = `translate(${mousePos.current.x}px, ${mousePos.current.y}px) translate(-50%, -50%) scale(${dotScale.current})`;
       }
-      // Outline position is interpolated
       if (outlineRef.current) {
         outlineRef.current.style.transform = `translate(${outlinePos.current.x}px, ${outlinePos.current.y}px) translate(-50%, -50%) scale(${outlineScale.current})`;
       }
@@ -64,7 +68,9 @@ const Cursor: React.FC = () => {
         cancelAnimationFrame(requestRef.current);
       }
     };
-  }, []); // Run effect only once on mount
+  }, [isTouchDevice]);
+
+  if (isTouchDevice) return null;
 
   return (
     <>
